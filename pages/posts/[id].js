@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Layout from "../components/Layout";
-import { getAllPostIds, getPostData } from "../lib/posts";
+import Layout from "../../components/Layout";
+import { getAllPostIds, getPostData } from "../../lib/posts";
 
 export default function Post({ post }) {
   const router = useRouter();
 
-  if (!post) {
+  if (router.isFallback || !post) {
     return <div>Loading...</div>;
   }
   return (
@@ -21,17 +21,17 @@ export default function Post({ post }) {
       <Link href="/blog-page">
         <div className="flex cursor-pointer mt-12">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
             className="w-6 h-6 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
             />
           </svg>
           <span>Back to blog-page</span>
@@ -40,20 +40,21 @@ export default function Post({ post }) {
     </Layout>
   );
 }
-
 export async function getStaticPaths() {
   const paths = await getAllPostIds();
+
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
-
 export async function getStaticProps({ params }) {
-  const { post: post } = await getPostData(params.id);
+  //const { post: post } = await getPostData(params.id);
+  const post = await getPostData(params.id);
   return {
     props: {
       post,
     },
+    revalidate: 3,
   };
 }
