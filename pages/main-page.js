@@ -14,15 +14,15 @@ export default function MainPage() {
   };
   return (
     <Layout title="mainpage">
-      <div className="mb-10">
+      <div className="m-10 flex justify-center flex-row sm:flex-row">
         <Link href={"blog-page"}>
           <a className="bg-indigo-500 mr-8 hover:bg-indigo-600 text-white px-10 py-12 rounded">
-            visit Blog
+            Blog
           </a>
         </Link>
         <Link href={"task-page"}>
-          <a className="bg-blue-500 mr-8 hover:bg-blue-600 text-white px-10 py-12 rounded">
-            visit Task
+          <a className="bg-blue-500 hover:bg-blue-600 text-white px-10 py-12 rounded">
+            Task
           </a>
         </Link>
       </div>
@@ -33,7 +33,7 @@ export default function MainPage() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="mt-10 cursor-pointer w-6 h-6"
+        className="mt-10 cursor-pointer w-10 h-10"
       >
         <path
           strokelinecap="round"

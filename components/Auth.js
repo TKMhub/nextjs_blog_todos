@@ -66,7 +66,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="max-w-md w-full space-y-8">
+    <div className="max-w-md w-80 space-y-8">
       <div>
         <Image className="mx-auto h-12 w-12" src={HOTLIB} alt="Workflow" />
         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
